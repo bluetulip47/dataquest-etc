@@ -1,5 +1,5 @@
 breads = [["Basic Loaves", 1], ["French Baguette", 2], ["Sourdough", 5]]
-pastries = [["Basic Pastries", 1]]
+pastries = [["Basic Pastries", 1], ["Fruit Pastries", 2]]
 
 class Bakery:
     def __init__(self, name):
