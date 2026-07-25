@@ -1,4 +1,6 @@
 breads = [["Basic Loaves", 1], ["French Baguette", 2], ["Sourdough", 5]]
+pies = [["Basic Pies", 1]]
+cakes = [["Basic Cakes", 1]]
 pastries = [["Basic Pastries", 1], ["Fruit Pastries", 2]]
 
 class Bakery:
@@ -11,7 +13,7 @@ class Baker:
     def __init__(self, name):
         self.name = name
         print(f"\nNew baker, named {self.name}, reporting for duty!\n")
-        self.skills = {"Bread": 5, "Pastries": 1}
+        self.skills = {"Bread": 5, "Pies": 1}
 
 print("Welcome to Run the Bakery!\n")
 
@@ -48,8 +50,10 @@ while ongoing:
         print("What do you want to make?\n")
         while len(planned_items) < 8:
             running2 = 1
+            sketchy4 = []
             for skill in baker.skills:
                 print(f"{running2}. {skill}")
+                sketchy4.append(skill)
                 running2 += 1
             print()
             try:
@@ -58,7 +62,7 @@ while ongoing:
                 print("Invalid choice")
                 continue
             print()
-            if your_choice2 == 1:
+            if sketchy4[your_choice2 - 1] == "Bread":
                 print("Which bread?\n")
                 running4 = 1
                 sketchy2 = []
@@ -68,19 +72,22 @@ while ongoing:
                         sketchy2.append(bread_opt[0])
                         running4 += 1
                 your_choice5 = int(input("\nChoice: ")) - 1
-                print(f"\nAdded {sketchy2[your_choice5]} to the menu.\n")
+                try:
+                    print(f"\nAdded {sketchy2[your_choice5]} to the menu.\n")
+                except IndexError:
+                    print("Invalid choice")
                 planned_items.append(sketchy2[your_choice5])
-            elif your_choice2 == 2:
+            elif sketchy4[your_choice2 - 1] == "Pies":
                 #print(pastries)
                 #print()
                 #planned_items.append(pastries[0])
-                print("Which pastries?\n")
+                print("Which pies?\n")
                 running5 = 1
                 sketchy3 = []
-                for pastry_opt in pastries:
-                    if baker.skills["Pastries"] >= pastry_opt[1]:
-                        print(f"{running5}. {pastry_opt[0]}")
-                        sketchy3.append(pastry_opt[0])
+                for pie_opt in pies:
+                    if baker.skills["Pies"] >= pie_opt[1]:
+                        print(f"{running5}. {pie_opt[0]}")
+                        sketchy3.append(pie_opt[0])
                         running5 += 1
                 your_choice6 = int(input("\nChoice: ")) - 1
                 print(f"\nAdded {sketchy3[your_choice6]} to the menu.\n")
@@ -119,3 +126,4 @@ while ongoing:
         print()
     elif action_chosen == "Exit":
         ongoing = False
+ 
