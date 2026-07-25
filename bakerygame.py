@@ -1,7 +1,7 @@
 breads = [["Basic Loaves", 1], ["French Baguette", 2], ["Sourdough", 5]]
-pies = [["Basic Pies", 1]]
-cakes = [["Basic Cakes", 1]]
-pastries = [["Basic Pastries", 1], ["Fruit Pastries", 2]]
+pies = [["Basic Pies", 1], ["Fruit Pies", 2], ["Key Lime Pies", 2], ["Lemon Meringue Pies", 3]]
+cakes = [["Basic Cakes", 1], ["Cheesecakes", 4]]
+pastries = [["Basic Pastries", 1], ["Fruit Pastries", 2], ["Nut Pastries", 4], ["Croissants", 5]]
 
 class Bakery:
     def __init__(self, name):
@@ -47,6 +47,7 @@ while ongoing:
     print()
     if action_chosen == "Plan a new menu":
         planned_items = []
+        planned_items_dict = {}
         print("What do you want to make?\n")
         while len(planned_items) < 8:
             running2 = 1
@@ -78,8 +79,13 @@ while ongoing:
                 try:
                     print(f"\nAdded {sketchy2[your_choice5]} to the menu.\n")
                     planned_items.append(sketchy2[your_choice5])
+                    if sketchy2[your_choice5] in planned_items_dict:
+                        planned_items_dict[sketchy2[your_choice5]] += 1
+                    else:
+                        planned_items_dict[sketchy2[your_choice5]] = 1
                 except IndexError:
                     print("Invalid choice")
+                #print(planned_items_dict)
             elif sketchy4[your_choice2 - 1] == "Pies":
                 print("Which pies?\n")
                 running5 = 1
@@ -93,6 +99,10 @@ while ongoing:
                 try:
                     print(f"\nAdded {sketchy3[your_choice6]} to the menu.\n")
                     planned_items.append(sketchy3[your_choice6])
+                    if sketchy3[your_choice6] in planned_items_dict:
+                        planned_items_dict[sketchy3[your_choice6]] += 1
+                    else:
+                        planned_items_dict[sketchy3[your_choice6]] = 1
                 except IndexError:
                     print("Invalid choice")
             elif sketchy4[your_choice2 - 1] == "Cakes":
@@ -107,6 +117,10 @@ while ongoing:
                 your_choice8 = int(input("\nChoice: ")) - 1
                 try:
                     planned_items.append(sketchy5[your_choice8])
+                    if sketchy5[your_choice8] in planned_items_dict:
+                        planned_items_dict[sketchy5[your_choice8]] += 1
+                    else:
+                        planned_items_dict[sketchy5[your_choice8]] = 1
                     print(f"\nAdded {sketchy5[your_choice8]} to the menu.\n")
                 except IndexError:
                     print("Invalid choice")
@@ -122,14 +136,19 @@ while ongoing:
                 your_choice9 = int(input("\nChoice: ")) - 1
                 try:
                     planned_items.append(sketchy7[your_choice9])
+                    if sketchy7[your_choice9] in planned_items_dict:
+                        planned_items_dict[sketchy7[your_choice9]] += 1
+                    else:
+                        planned_items_dict[sketchy7[your_choice9]] = 1
                     print(f"\nAdded {sketchy7[your_choice9]} to the menu.\n")
                 except IndexError:
                     print("Invalid choice")
             else:
                 print("Invalid choice")
-        bakery.menu = planned_items
+        bakery.menu = planned_items_dict
         print("The new menu is:\n")
         print(bakery.menu)
+        #print(planned_items_dict)
         print()
         if "Run the bakery" not in possible_actions:
             possible_actions.insert(0, "Run the bakery")
