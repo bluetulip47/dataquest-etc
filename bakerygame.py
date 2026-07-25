@@ -8,7 +8,8 @@
 ###
 ###############
 
-
+import re
+import sys
 
 breads = [["Basic Loaves", 1], ["French Baguette", 2], ["Sourdough", 5]]
 pies = [["Basic Pies", 1], ["Fruit Pies", 2], ["Key Lime Pies", 2], ["Lemon Meringue Pies", 3]]
@@ -27,15 +28,28 @@ class Baker:
         print(f"\nNew baker, named {self.name}, reporting for duty!\n")
         self.skills = {"Bread": 5, "Pies": 1}
 
+def check_name(name):
+    if bool(re.match(r'^[a-zA-Z0-9\- ]+$', name)):
+        return True
+    else:
+        print("\nNames must consist of alphanumeric characters, hyphens or spaces only.\n")
+        return False
+
 print("Welcome to Run the Bakery!\n")
 
 b1name = input("What is your name? ")
 
-baker = Baker(b1name)
+if check_name(b1name):
+    baker = Baker(b1name)
+else:
+    sys.exit()
 
 b2name = input("What is your bakery's name? ")
 
-bakery = Bakery(b2name)
+if check_name(b2name):
+    bakery = Bakery(b2name)
+else:
+    sys.exit()
 
 ongoing = True
 
