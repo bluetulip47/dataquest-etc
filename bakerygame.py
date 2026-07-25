@@ -1,3 +1,15 @@
+###############
+###
+###     "Run the Bakery!"
+###
+###     A game loosely based on the "Build a Food Ordering App"
+###     and "Garden Simulator Text Based Game" projects from Dataquest's
+###     "Fundamentals of Python and Generative AI" Skill Path
+###
+###############
+
+
+
 breads = [["Basic Loaves", 1], ["French Baguette", 2], ["Sourdough", 5]]
 pies = [["Basic Pies", 1], ["Fruit Pies", 2], ["Key Lime Pies", 2], ["Lemon Meringue Pies", 3]]
 cakes = [["Basic Cakes", 1], ["Cheesecakes", 4]]
