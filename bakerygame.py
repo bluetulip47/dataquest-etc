@@ -71,12 +71,15 @@ while ongoing:
                         print(f"{running4}. {bread_opt[0]}")
                         sketchy2.append(bread_opt[0])
                         running4 += 1
-                your_choice5 = int(input("\nChoice: ")) - 1
+                try:
+                    your_choice5 = int(input("\nChoice: ")) - 1
+                except ValueError:
+                    print("Invalid choice")                    
                 try:
                     print(f"\nAdded {sketchy2[your_choice5]} to the menu.\n")
+                    planned_items.append(sketchy2[your_choice5])
                 except IndexError:
                     print("Invalid choice")
-                planned_items.append(sketchy2[your_choice5])
             elif sketchy4[your_choice2 - 1] == "Pies":
                 #print(pastries)
                 #print()
@@ -90,8 +93,26 @@ while ongoing:
                         sketchy3.append(pie_opt[0])
                         running5 += 1
                 your_choice6 = int(input("\nChoice: ")) - 1
-                print(f"\nAdded {sketchy3[your_choice6]} to the menu.\n")
-                planned_items.append(sketchy3[your_choice6])
+                try:
+                    print(f"\nAdded {sketchy3[your_choice6]} to the menu.\n")
+                    planned_items.append(sketchy3[your_choice6])
+                except IndexError:
+                    print("Invalid choice")
+            elif sketchy4[your_choice2 - 1] == "Cakes":
+                print("Which cakes?\n")
+                running6 = 1
+                sketchy5 = []
+                for cake_opt in cakes:
+                    if baker.skills["Cakes"] >= cake_opt[1]:
+                        print(f"{running6}. {cake_opt[0]}")
+                        sketchy5.append(cake_opt[0])
+                        running6 += 1
+                your_choice8 = int(input("\nChoice: ")) - 1
+                try:
+                    print(f"\nAdded {sketchy5[your_choice8]} to the menu.\n")
+                    planned_items.append(sketchy5[your_choice8])
+                except IndexError:
+                    print("Invalid choice")
             else:
                 print("Invalid choice")
         #print(planned_items)
@@ -106,7 +127,15 @@ while ongoing:
         your_choice3 = int(input("Choice: "))
         print()
         if your_choice3 == 1:
-            print("Sorry, this has not yet been implemented\n")
+            newskills = ["Cakes", "Pastries"]
+            print("Skills to choose from:\n")
+            for skill3 in newskills:
+                if skill3 not in baker.skills:
+                    print(skill3)
+            your_choice7 = int(input("\nChoice: "))
+            baker.skills[newskills[your_choice7 - 1]] = 1
+            print(your_choice7)
+            print()
         elif your_choice3 == 2:
             running3 = 1
             sketchy = []
@@ -126,4 +155,3 @@ while ongoing:
         print()
     elif action_chosen == "Exit":
         ongoing = False
- 
