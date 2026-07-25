@@ -81,9 +81,6 @@ while ongoing:
                 except IndexError:
                     print("Invalid choice")
             elif sketchy4[your_choice2 - 1] == "Pies":
-                #print(pastries)
-                #print()
-                #planned_items.append(pastries[0])
                 print("Which pies?\n")
                 running5 = 1
                 sketchy3 = []
@@ -109,15 +106,27 @@ while ongoing:
                         running6 += 1
                 your_choice8 = int(input("\nChoice: ")) - 1
                 try:
-                    print(f"\nAdded {sketchy5[your_choice8]} to the menu.\n")
                     planned_items.append(sketchy5[your_choice8])
+                    print(f"\nAdded {sketchy5[your_choice8]} to the menu.\n")
                 except IndexError:
                     print("Invalid choice")
             elif sketchy4[your_choice2 - 1] == "Pastries":
-                    print("Sorry, this hasn't been implemented yet\n")
+                print("Which pastries?\n")
+                running8 = 1
+                sketchy7 = []
+                for pastry_opt in pastries:
+                    if baker.skills["Pastries"] >= pastry_opt[1]:
+                        print(f"{running8}. {pastry_opt[0]}")
+                        sketchy7.append(pastry_opt[0])
+                        running8 += 1
+                your_choice9 = int(input("\nChoice: ")) - 1
+                try:
+                    planned_items.append(sketchy7[your_choice9])
+                    print(f"\nAdded {sketchy7[your_choice9]} to the menu.\n")
+                except IndexError:
+                    print("Invalid choice")
             else:
                 print("Invalid choice")
-        #print(planned_items)
         bakery.menu = planned_items
         print("The new menu is:\n")
         print(bakery.menu)
@@ -155,10 +164,15 @@ while ongoing:
                 running3 += 1
             print()
             your_choice4 = int(input("Choice: "))
-            print(f"\nYou learned about {sketchy[your_choice4 - 1]}\n")
-            baker.skills[sketchy[your_choice4 - 1]] += 1
+            try:
+                baker.skills[sketchy[your_choice4 - 1]] += 1
+                print(f"\nYou learned about {sketchy[your_choice4 - 1]}\n")
+            except IndexError:
+                print("\nInvalid choice\n")
             print(baker.skills)
             print()
+        else:
+            print("Invalid choice\n")
             
     elif action_chosen == "Run the bakery":
         print(bakery.menu)
