@@ -113,6 +113,8 @@ while ongoing:
                     planned_items.append(sketchy5[your_choice8])
                 except IndexError:
                     print("Invalid choice")
+            elif sketchy4[your_choice2 - 1] == "Pastries":
+                    print("Sorry, this hasn't been implemented yet\n")
             else:
                 print("Invalid choice")
         #print(planned_items)
@@ -127,15 +129,23 @@ while ongoing:
         your_choice3 = int(input("Choice: "))
         print()
         if your_choice3 == 1:
+            running7 = 1
+            sketchy6 = []
             newskills = ["Cakes", "Pastries"]
             print("Skills to choose from:\n")
             for skill3 in newskills:
                 if skill3 not in baker.skills:
-                    print(skill3)
-            your_choice7 = int(input("\nChoice: "))
-            baker.skills[newskills[your_choice7 - 1]] = 1
-            print(your_choice7)
-            print()
+                    print(f"{running7}. {skill3}")
+                    sketchy6.append(skill3)
+                    running7 += 1
+            if running7 == 1:
+                print("Sorry, there are no new skills available.\n")
+            else:
+                your_choice7 = int(input("\nChoice: ")) - 1
+                #print(your_choice7)
+                baker.skills[sketchy6[your_choice7]] = 1
+                print(f"\nYou learned {sketchy6[your_choice7]}.")
+                print()
         elif your_choice3 == 2:
             running3 = 1
             sketchy = []
